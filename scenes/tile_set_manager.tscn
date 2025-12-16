@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpyqly5ahprl5"]
+
+[ext_resource type="Script" uid="uid://bvr5gutrm4ma8" path="res://scripts/tile_set_manager.gd" id="1_y4ex1"]
+[ext_resource type="Texture2D" uid="uid://c5x12eb564tji" path="res://resources/tile_marker.tres" id="2_wxtcb"]
+[ext_resource type="Script" uid="uid://c3nq6l3xq0iji" path="res://scripts/path_finder.gd" id="3_n4g58"]
+[ext_resource type="Script" uid="uid://bwh7g4jmamfa1" path="res://scripts/wonder_event.gd" id="4_ppx7j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxtcb"]
+size = Vector2(0, 0)
+
+[node name="TileSetManager" type="Node2D"]
+script = ExtResource("1_y4ex1")
+grid_size = Vector2i(9, 9)
+
+[node name="TileMarker" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("2_wxtcb")
+
+[node name="MouseArea" type="Area2D" parent="."]
+
+[node name="MouseCollisionShape" type="CollisionShape2D" parent="MouseArea"]
+visible = false
+shape = SubResource("RectangleShape2D_wxtcb")
+
+[node name="PathFinder" type="Node" parent="."]
+script = ExtResource("3_n4g58")
+
+[node name="WonderEventHandler" type="Node" parent="."]
+script = ExtResource("4_ppx7j")
+
+[connection signal="mouse_entered" from="MouseArea" to="." method="_show_marker"]
+[connection signal="mouse_exited" from="MouseArea" to="." method="_hide_marker"]

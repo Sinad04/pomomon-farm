@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdb21tcsrwyvm"]
+
+[ext_resource type="Script" uid="uid://cvclhanlu6oor" path="res://scripts/save_state_listing.gd" id="1_urxb8"]
+
+[node name="SaveStateListing" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_urxb8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ID" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SAVE STATE #0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Empty" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "[ EMPTY ]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ActivePhase" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Current Phase: BREAK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompletedFoc" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Completed Focus Phases: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridSize" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OwnedBerries" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Owned Berries: 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Load" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Load State"
+
+[node name="Delete" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete State"
+
+[node name="ConfirmDelete" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Confirm Delete"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Load" to="." method="load_save_state"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Delete" to="." method="show_conf_del"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/ConfirmDelete" to="." method="reset_save_state"]

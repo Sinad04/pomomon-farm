@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://demr6qijr0kpl"]
+
+[ext_resource type="Script" uid="uid://cxy63fdrdt01i" path="res://scripts/phase_timer.gd" id="1_m0bfk"]
+
+[node name="Phase_Timer" type="Node"]
+script = ExtResource("1_m0bfk")
+set_minutes = 2
+
+[node name="Counter" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[connection signal="half_time_over" from="." to="." method="_on_half_time_over"]
+[connection signal="phase_over" from="." to="." method="_on_phase_over"]
+[connection signal="timeout" from="Counter" to="." method="_on_counter_timeout"]

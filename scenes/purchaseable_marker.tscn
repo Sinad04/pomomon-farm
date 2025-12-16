@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://1mkd1yv83lcy"]
+
+[ext_resource type="Texture2D" uid="uid://bjwgjmq6o1uhg" path="res://resources/purchaseable_marker.tres" id="1_gm6qs"]
+[ext_resource type="Script" uid="uid://cr0d3ekdu7tij" path="res://scripts/purchaseable_tile_marker.gd" id="2_rh50p"]
+
+[node name="PurchaseableMarker" type="Sprite2D"]
+z_index = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_gm6qs")
+script = ExtResource("2_rh50p")

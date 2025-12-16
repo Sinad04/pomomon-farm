@@ -1,0 +1,6 @@
+class_name Enums extends Node
+
+enum TILE_STATES {GREEN = 0, DRY_FIELD = 1, WATERED_FIELD = 2}
+enum PHASES {FOCUS = 0, SHORT_PAUSE = 1, LONG_PAUSE = 2}
+enum ACTIONS {SOW = 1, WATER = 2, HARVEST = 3, NONE = 4}
+enum SEASONS {BREEZY = 0, WARM = 1, RAINY = 2}

@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd0g2eos1sksh"]
+
+[ext_resource type="Script" uid="uid://c3ueyrguwjbsn" path="res://scripts/seed_listing.gd" id="1_lqq60"]
+
+[node name="SeedListing" type="PanelContainer"]
+script = ExtResource("1_lqq60")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Name" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "BerryName"
+
+[node name="BuyButtonContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 10
+
+[node name="Buy" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/BuyButtonContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "BUY"
+
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "for 15 Berries"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Desc" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Lorem Ipsum dolor sit amet."
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/BuyButtonContainer/Buy" to="." method="_purchase"]

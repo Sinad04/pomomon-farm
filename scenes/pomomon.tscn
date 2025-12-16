@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0oylv0q0fq3c"]
+
+[ext_resource type="Texture2D" uid="uid://dvhwbey6qbdoh" path="res://resources/SamplePomomon.png" id="1_ol33i"]
+[ext_resource type="Script" uid="uid://c0ucwrj3h1x76" path="res://scripts/pomomon.gd" id="1_pmea6"]
+
+[node name="Pomomon" type="Node2D"]
+script = ExtResource("1_pmea6")
+
+[node name="PomomonSprite" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, 1.9073486e-06)
+scale = Vector2(0.3466667, 0.3200001)
+texture = ExtResource("1_ol33i")

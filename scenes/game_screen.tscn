@@ -1,0 +1,371 @@
+[gd_scene load_steps=13 format=3 uid="uid://xw8ixa3wv16f"]
+
+[ext_resource type="Script" uid="uid://bnutd2p1c63ei" path="res://scripts/game_screen.gd" id="1_dv2sx"]
+[ext_resource type="Texture2D" uid="uid://euj2tcm3er8p" path="res://resources/16825.png" id="2_mjl5p"]
+[ext_resource type="PackedScene" uid="uid://bpyqly5ahprl5" path="res://scenes/tile_set_manager.tscn" id="3_3uriw"]
+[ext_resource type="PackedScene" uid="uid://demr6qijr0kpl" path="res://scenes/phase_timer.tscn" id="3_dv2sx"]
+[ext_resource type="Script" uid="uid://ryrymidvdotb" path="res://scripts/game_screen_ui.gd" id="5_rxmqw"]
+[ext_resource type="PackedScene" uid="uid://d1hk8tuvkhmny" path="res://scenes/timer_settings.tscn" id="6_1urxi"]
+[ext_resource type="ButtonGroup" uid="uid://cf7e63nqget0v" path="res://resources/action_button_group.tres" id="7_dthvl"]
+[ext_resource type="PackedScene" uid="uid://bnl4l4asth088" path="res://scenes/seed_slot.tscn" id="7_r01d7"]
+[ext_resource type="PackedScene" uid="uid://cd0g2eos1sksh" path="res://scenes/seed_listing.tscn" id="8_vnpv3"]
+[ext_resource type="Script" uid="uid://d681jaqmf5xl" path="res://scripts/tile_listing.gd" id="9_4m8lb"]
+[ext_resource type="PackedScene" uid="uid://blfbipc3lmmh" path="res://scenes/plant.tscn" id="11_mjl5p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dv2sx"]
+font_size = 36
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GameScreen" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_dv2sx")
+
+[node name="BackgroundPicture" type="TextureRect" parent="."]
+modulate = Color(0.26307145, 0.24184927, 0.07558205, 1)
+z_index = -20
+offset_right = 1600.0
+offset_bottom = 904.0
+texture = ExtResource("2_mjl5p")
+stretch_mode = 1
+
+[node name="TileSetManager" parent="." instance=ExtResource("3_3uriw")]
+position = Vector2(800, 450)
+grid_size = Vector2i(8, 8)
+
+[node name="FocusTimer" parent="." instance=ExtResource("3_dv2sx")]
+set_minutes = 25
+
+[node name="ShortPauseTimer" parent="." instance=ExtResource("3_dv2sx")]
+set_minutes = 0
+set_seconds = 10
+phase = 1
+
+[node name="LongPauseTimer" parent="." instance=ExtResource("3_dv2sx")]
+set_minutes = 15
+phase = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("5_rxmqw")
+
+[node name="TimeDisplay" type="PanelContainer" parent="UI"]
+custom_minimum_size = Vector2(80, 50)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_right = 256.0
+offset_bottom = 112.0
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/TimeDisplay"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="MarginContTimer" type="MarginContainer" parent="UI/TimeDisplay/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TimeDisplay/HBoxContainer/MarginContTimer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrentTime" type="Label" parent="UI/TimeDisplay/HBoxContainer/MarginContTimer/VBoxContainer"]
+layout_mode = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_dv2sx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrentPhase" type="Label" parent="UI/TimeDisplay/HBoxContainer/MarginContTimer/VBoxContainer"]
+layout_mode = 2
+text = "PHASE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContPause" type="MarginContainer" parent="UI/TimeDisplay/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_right = 30
+
+[node name="PauseTimer" type="Button" parent="UI/TimeDisplay/HBoxContainer/MarginContPause"]
+layout_mode = 2
+toggle_mode = true
+text = "PAUSE TIMER"
+
+[node name="MarginContSeason" type="MarginContainer" parent="UI/TimeDisplay/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TimeDisplay/HBoxContainer/MarginContSeason"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/TimeDisplay/HBoxContainer/MarginContSeason/VBoxContainer"]
+layout_mode = 2
+text = "Season:"
+horizontal_alignment = 1
+
+[node name="Season" type="Label" parent="UI/TimeDisplay/HBoxContainer/MarginContSeason/VBoxContainer"]
+layout_mode = 2
+text = "BREEZY"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/TimeDisplay/HBoxContainer/MarginContSeason/VBoxContainer"]
+layout_mode = 2
+text = "changes in..."
+horizontal_alignment = 1
+
+[node name="RemainingFocuses" type="Label" parent="UI/TimeDisplay/HBoxContainer/MarginContSeason/VBoxContainer"]
+layout_mode = 2
+text = "12 Focus Phases"
+horizontal_alignment = 1
+
+[node name="MoveOnDisplay" type="PanelContainer" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.99600005
+anchor_right = 0.5
+anchor_bottom = 0.99600005
+offset_left = -224.0
+offset_top = -88.400024
+offset_right = 224.0
+offset_bottom = -0.4000244
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/MoveOnDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="MoveOnButton" type="Button" parent="UI/MoveOnDisplay/MarginContainer"]
+layout_mode = 2
+text = "MOVE ON TO NEXT PHASE"
+
+[node name="GameSettings" type="FoldableContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -288.0
+offset_bottom = 443.0
+grow_horizontal = 0
+mouse_filter = 1
+folded = true
+title = "SETTINGS"
+title_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameSettings"]
+visible = false
+layout_mode = 2
+
+[node name="TimerSettings" type="VBoxContainer" parent="UI/GameSettings/VBoxContainer"]
+layout_mode = 2
+
+[node name="FocusSettings" parent="UI/GameSettings/VBoxContainer/TimerSettings" instance=ExtResource("6_1urxi")]
+layout_mode = 2
+timer_type = 0
+
+[node name="ShortPauseSettings" parent="UI/GameSettings/VBoxContainer/TimerSettings" instance=ExtResource("6_1urxi")]
+layout_mode = 2
+
+[node name="LongPauseSettings" parent="UI/GameSettings/VBoxContainer/TimerSettings" instance=ExtResource("6_1urxi")]
+layout_mode = 2
+timer_type = 2
+
+[node name="StateSettings" type="HBoxContainer" parent="UI/GameSettings/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveGame" type="Button" parent="UI/GameSettings/VBoxContainer/StateSettings"]
+layout_mode = 2
+text = "SAVE GAME"
+
+[node name="ExitGame" type="Button" parent="UI/GameSettings/VBoxContainer/StateSettings"]
+layout_mode = 2
+text = "EXIT TO START"
+
+[node name="ActionSelect" type="FoldableContainer" parent="UI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 240.0
+offset_top = -140.0
+offset_right = 448.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+folded = true
+title = "ACTIONS"
+title_alignment = 1
+title_position = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ActionSelect"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="Sow" type="Button" parent="UI/ActionSelect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.554874, 0.76676106, 0, 1)
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("7_dthvl")
+text = "SOW SEED"
+
+[node name="Water" type="Button" parent="UI/ActionSelect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.554874, 0.76676106, 0, 1)
+toggle_mode = true
+button_group = ExtResource("7_dthvl")
+text = "WATER PLANT"
+
+[node name="Harvest" type="Button" parent="UI/ActionSelect/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.554874, 0.76676106, 0, 1)
+toggle_mode = true
+button_group = ExtResource("7_dthvl")
+text = "HARVEST PLANT"
+
+[node name="BerryDisplay" type="PanelContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -232.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/BerryDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 10
+
+[node name="OwnedBerries" type="Label" parent="UI/BerryDisplay/MarginContainer"]
+layout_mode = 2
+text = " BERRIES: "
+
+[node name="SeedInventory" type="FoldableContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -196.0
+offset_right = 384.0
+grow_vertical = 0
+mouse_filter = 1
+title = "SEED INVENTORY"
+title_alignment = 1
+title_position = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/SeedInventory"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SeedInventory/MarginContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+alignment = 1
+
+[node name="SeedSlotA" parent="UI/SeedInventory/MarginContainer/VBoxContainer" instance=ExtResource("7_r01d7")]
+layout_mode = 2
+
+[node name="SeedSlotB" parent="UI/SeedInventory/MarginContainer/VBoxContainer" instance=ExtResource("7_r01d7")]
+layout_mode = 2
+id = 1
+
+[node name="SeedSlotC" parent="UI/SeedInventory/MarginContainer/VBoxContainer" instance=ExtResource("7_r01d7")]
+layout_mode = 2
+id = 2
+
+[node name="SeedShop" type="FoldableContainer" parent="UI"]
+offset_right = 512.0
+offset_bottom = 416.0
+mouse_filter = 1
+folded = true
+title = "SEED SHOP"
+title_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/SeedShop"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SeedShop/MarginContainer"]
+layout_mode = 2
+
+[node name="SeedListingA" parent="UI/SeedShop/MarginContainer/VBoxContainer" instance=ExtResource("8_vnpv3")]
+layout_mode = 2
+
+[node name="SeedListingB" parent="UI/SeedShop/MarginContainer/VBoxContainer" instance=ExtResource("8_vnpv3")]
+layout_mode = 2
+id = 1
+
+[node name="SeedListingC" parent="UI/SeedShop/MarginContainer/VBoxContainer" instance=ExtResource("8_vnpv3")]
+layout_mode = 2
+id = 2
+
+[node name="TileListing" type="PanelContainer" parent="UI/SeedShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("9_4m8lb")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Buy a new Field Tile:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Price" type="Label" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Price: 1"
+
+[node name="BuyButtonContainer" type="MarginContainer" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 30
+
+[node name="Buy" type="Button" parent="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer/VBoxContainer/HBoxContainer/BuyButtonContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "BUY"
+
+[node name="DummyPlant" parent="." instance=ExtResource("11_mjl5p")]
+visible = false
+
+[connection signal="phase_over" from="FocusTimer" to="UI" method="_on_phase_over"]
+[connection signal="phase_over" from="ShortPauseTimer" to="UI" method="_on_phase_over"]
+[connection signal="phase_over" from="LongPauseTimer" to="UI" method="_on_phase_over"]
+[connection signal="toggled" from="UI/TimeDisplay/HBoxContainer/MarginContPause/PauseTimer" to="." method="_on_pause_timer_button_toggled"]
+[connection signal="toggled" from="UI/TimeDisplay/HBoxContainer/MarginContPause/PauseTimer" to="UI" method="_on_pause_timer_toggled"]
+[connection signal="pressed" from="UI/MoveOnDisplay/MarginContainer/MoveOnButton" to="." method="_on_move_on_button_pressed"]
+[connection signal="timer_settings_changed" from="UI/GameSettings/VBoxContainer/TimerSettings/FocusSettings" to="." method="_change_timer_settings"]
+[connection signal="timer_settings_changed" from="UI/GameSettings/VBoxContainer/TimerSettings/ShortPauseSettings" to="." method="_change_timer_settings"]
+[connection signal="timer_settings_changed" from="UI/GameSettings/VBoxContainer/TimerSettings/LongPauseSettings" to="." method="_change_timer_settings"]
+[connection signal="pressed" from="UI/GameSettings/VBoxContainer/StateSettings/SaveGame" to="UI" method="_on_save_game_pressed"]
+[connection signal="purchase" from="UI/SeedShop/MarginContainer/VBoxContainer/SeedListingA" to="." method="purchase_seed"]
+[connection signal="purchase" from="UI/SeedShop/MarginContainer/VBoxContainer/SeedListingB" to="." method="purchase_seed"]
+[connection signal="purchase" from="UI/SeedShop/MarginContainer/VBoxContainer/SeedListingC" to="." method="purchase_seed"]
+[connection signal="purchase" from="UI/SeedShop/MarginContainer/VBoxContainer/TileListing" to="." method="purchase_tile"]
+[connection signal="pressed" from="UI/SeedShop/MarginContainer/VBoxContainer/TileListing/MarginContainer/VBoxContainer/HBoxContainer/BuyButtonContainer/Buy" to="UI/SeedShop/MarginContainer/VBoxContainer/TileListing" method="_purchase"]

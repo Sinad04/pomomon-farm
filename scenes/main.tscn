@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://6bns21ipawmi"]
+
+[ext_resource type="Script" uid="uid://sufowxqjpeos" path="res://scripts/screen_manager.gd" id="1_0wfyh"]
+[ext_resource type="AudioStream" uid="uid://bw67a70idduga" path="res://resources/alert.wav" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://bj3sandvbydma" path="res://scripts/audio_manager.gd" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://c2kkv7nl6ettf" path="res://scenes/config_loader.tscn" id="4_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://bcgnn53fdgst6" path="res://scenes/save_state.tscn" id="5_tbgi4"]
+
+[node name="ScreenManager" type="Node"]
+script = ExtResource("1_0wfyh")
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("2_sugp2")
+
+[node name="AlertSound" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("2_0wfyh")
+bus = &"SFX"
+
+[node name="ConfigLoader" parent="." instance=ExtResource("4_tbgi4")]
+
+[node name="SaveState1" parent="." instance=ExtResource("5_tbgi4")]
+save_state_id = 1
+
+[node name="SaveState2" parent="." instance=ExtResource("5_tbgi4")]
+save_state_id = 2
+
+[node name="SaveState3" parent="." instance=ExtResource("5_tbgi4")]
+save_state_id = 3

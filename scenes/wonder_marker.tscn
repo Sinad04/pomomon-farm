@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dj1hjoul37f2x"]
+
+[ext_resource type="Script" path="res://scripts/wonder_marker.gd" id="1_nlkn3"]
+
+
+[sub_resource type="Gradient" id="Gradient_nlkn3"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.345898, 0.5321508, 0.7206209, 0.8758315, 0.9490022)
+colors = PackedColorArray(0.76300025, 0.20999998, 1, 0, 0.76300025, 0.20999998, 1, 0.3137255, 0.8890001, 0.63, 1, 0.49411765, 1, 0.050000012, 0.3508333, 0.4745098, 1, 0.56, 0.61866665, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0w365"]
+gradient = SubResource("Gradient_nlkn3")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[node name="WonderMarker" type="Sprite2D"]
+z_index = 2
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_0w365")
+script = ExtResource("1_nlkn3")

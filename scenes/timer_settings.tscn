@@ -1,0 +1,132 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1hk8tuvkhmny"]
+
+[ext_resource type="Script" uid="uid://c141b6s0ohvwo" path="res://scripts/timer_settings_ui_element.gd" id="1_uwldm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gl2vp"]
+font_size = 25
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vpljj"]
+font_size = 25
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_820gd"]
+font_size = 25
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TimerSettings" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uwldm")
+timer_type = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PhaseName" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "SHORT BREAK"
+label_settings = SubResource("LabelSettings_gl2vp")
+horizontal_alignment = 1
+
+[node name="TimerSet" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MinutesSettings" type="VBoxContainer" parent="VBoxContainer/TimerSet"]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="VBoxContainer/TimerSet/MinutesSettings"]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_vpljj")
+horizontal_alignment = 1
+
+[node name="Up" type="HBoxContainer" parent="VBoxContainer/TimerSet/MinutesSettings"]
+layout_mode = 2
+
+[node name="BigUp" type="Button" parent="VBoxContainer/TimerSet/MinutesSettings/Up"]
+layout_mode = 2
+text = "/\\/\\"
+
+[node name="SmallUp" type="Button" parent="VBoxContainer/TimerSet/MinutesSettings/Up"]
+layout_mode = 2
+text = "/\\"
+
+[node name="Down" type="HBoxContainer" parent="VBoxContainer/TimerSet/MinutesSettings"]
+layout_mode = 2
+
+[node name="BigDown" type="Button" parent="VBoxContainer/TimerSet/MinutesSettings/Down"]
+layout_mode = 2
+disabled = true
+text = "\\/\\/"
+
+[node name="SmallDown" type="Button" parent="VBoxContainer/TimerSet/MinutesSettings/Down"]
+layout_mode = 2
+disabled = true
+text = "\\/"
+
+[node name="MarginContDivide" type="MarginContainer" parent="VBoxContainer/TimerSet"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 70
+
+[node name="Divide" type="Label" parent="VBoxContainer/TimerSet/MarginContDivide"]
+layout_mode = 2
+text = ":"
+label_settings = SubResource("LabelSettings_820gd")
+horizontal_alignment = 1
+
+[node name="SecondsSettings" type="VBoxContainer" parent="VBoxContainer/TimerSet"]
+layout_mode = 2
+
+[node name="Value" type="Label" parent="VBoxContainer/TimerSet/SecondsSettings"]
+layout_mode = 2
+text = "00"
+label_settings = SubResource("LabelSettings_vpljj")
+horizontal_alignment = 1
+
+[node name="Up" type="HBoxContainer" parent="VBoxContainer/TimerSet/SecondsSettings"]
+layout_mode = 2
+
+[node name="BigUp" type="Button" parent="VBoxContainer/TimerSet/SecondsSettings/Up"]
+layout_mode = 2
+text = "/\\/\\"
+
+[node name="SmallUp" type="Button" parent="VBoxContainer/TimerSet/SecondsSettings/Up"]
+layout_mode = 2
+text = "/\\"
+
+[node name="Down" type="HBoxContainer" parent="VBoxContainer/TimerSet/SecondsSettings"]
+layout_mode = 2
+
+[node name="BigDown" type="Button" parent="VBoxContainer/TimerSet/SecondsSettings/Down"]
+layout_mode = 2
+disabled = true
+text = "\\/\\/"
+
+[node name="SmallDown" type="Button" parent="VBoxContainer/TimerSet/SecondsSettings/Down"]
+layout_mode = 2
+disabled = true
+text = "\\/"
+
+[node name="ApplyButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "APPLY"
+
+[connection signal="pressed" from="VBoxContainer/TimerSet/MinutesSettings/Up/BigUp" to="." method="min_bigup"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/MinutesSettings/Up/SmallUp" to="." method="min_smallup"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/MinutesSettings/Down/BigDown" to="." method="min_bigdown"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/MinutesSettings/Down/SmallDown" to="." method="min_smalldown"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/SecondsSettings/Up/BigUp" to="." method="sec_bigup"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/SecondsSettings/Up/SmallUp" to="." method="sec_smallup"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/SecondsSettings/Down/BigDown" to="." method="sec_bigdown"]
+[connection signal="pressed" from="VBoxContainer/TimerSet/SecondsSettings/Down/SmallDown" to="." method="sec_smalldown"]
+[connection signal="pressed" from="VBoxContainer/ApplyButton" to="." method="_apply_timer_settings"]

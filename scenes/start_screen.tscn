@@ -1,0 +1,187 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdfggh02xwcxt"]
+
+[ext_resource type="Script" uid="uid://b4i7onp4r5s5t" path="res://scripts/start_screen.gd" id="1_r2jwc"]
+[ext_resource type="StyleBox" uid="uid://dc0ejmlvbp2ck" path="res://styleboxes/start_button_style.tres" id="1_tx5wa"]
+[ext_resource type="StyleBox" uid="uid://bccsxfjrx0pt2" path="res://styleboxes/start_button_hover_press.tres" id="2_o7i0r"]
+[ext_resource type="PackedScene" uid="uid://cdb21tcsrwyvm" path="res://scenes/save_state_listing.tscn" id="4_r2jwc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cllq7"]
+bg_color = Color(0.94509804, 0.96862745, 0.93333334, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o7i0r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7i0r"]
+bg_color = Color(0.57254905, 0.6666667, 0.5137255, 1)
+
+[node name="Start Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r2jwc")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cllq7")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = 92.0
+offset_right = 182.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882354, 0.1254902, 0.12941177, 1)
+theme_override_colors/font_focus_color = Color(0.105882354, 0.1254902, 0.12941177, 1)
+theme_override_colors/font_pressed_color = Color(0.105882354, 0.1254902, 0.12941177, 1)
+theme_override_colors/font_hover_color = Color(0.105882354, 0.1254902, 0.12941177, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.105882354, 0.1254902, 0.12941177, 1)
+theme_override_styles/normal = ExtResource("1_tx5wa")
+theme_override_styles/pressed = ExtResource("2_o7i0r")
+theme_override_styles/hover = ExtResource("2_o7i0r")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_o7i0r")
+text = "START"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -197.0
+offset_right = 368.0
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.105882354, 0.1254902, 0.12941177, 1)
+theme_override_font_sizes/font_size = 60
+text = "Pomomon Farm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftEdge" type="Panel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.41300002
+anchor_bottom = 0.41300002
+offset_top = -371.7
+offset_right = 192.0
+offset_bottom = 532.3
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7i0r")
+
+[node name="RightEdge" type="Panel" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -450.0
+offset_bottom = 454.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_o7i0r")
+
+[node name="SaveStateList" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 256.0
+offset_top = 432.0
+offset_right = 1344.0
+offset_bottom = 704.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveStateList"]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveStateListing1" parent="SaveStateList/HBoxContainer" instance=ExtResource("4_r2jwc")]
+layout_mode = 2
+id = 1
+
+[node name="SaveStateListing2" parent="SaveStateList/HBoxContainer" instance=ExtResource("4_r2jwc")]
+layout_mode = 2
+id = 2
+
+[node name="SaveStateListing3" parent="SaveStateList/HBoxContainer" instance=ExtResource("4_r2jwc")]
+layout_mode = 2
+id = 3
+
+[node name="PickFieldSize" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -34.0
+offset_right = 160.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PickFieldSize"]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PickFieldSize/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="PickFieldSize/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "PICK MAXIMUM FIELD SIZE"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="PickFieldSize/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="HBoxContainer" type="VBoxContainer" parent="PickFieldSize/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Tiny" type="Button" parent="PickFieldSize/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Tiny (1*1)"
+
+[node name="Small" type="Button" parent="PickFieldSize/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Small (3*2)"
+
+[node name="Medium" type="Button" parent="PickFieldSize/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Medium (6*3)"
+
+[node name="Large" type="Button" parent="PickFieldSize/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Large(9*5)"
+
+[node name="Huge" type="Button" parent="PickFieldSize/VBoxContainer/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Huge(12*6)"
+
+[connection signal="pressed" from="StartButton" to="." method="_display_save_states"]
+[connection signal="load_save_state_pressed" from="SaveStateList/HBoxContainer/SaveStateListing1" to="." method="select_save_state"]
+[connection signal="load_save_state_pressed" from="SaveStateList/HBoxContainer/SaveStateListing2" to="." method="select_save_state"]
+[connection signal="load_save_state_pressed" from="SaveStateList/HBoxContainer/SaveStateListing3" to="." method="select_save_state"]

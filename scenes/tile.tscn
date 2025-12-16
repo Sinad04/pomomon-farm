@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://8c8hlm5dfgdl"]
+
+[ext_resource type="Script" uid="uid://c1axjipyyeoyh" path="res://scripts/tile.gd" id="1_3dk36"]
+[ext_resource type="Texture2D" uid="uid://bwk027luqp25w" path="res://resources/greentile.tres" id="2_ywnoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywnoi"]
+size = Vector2(128, 128)
+
+[node name="Tile" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_3dk36")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_ywnoi")
+
+[node name="MouseArea" type="Area2D" parent="."]
+z_index = 5
+collision_layer = 2
+collision_mask = 2
+collision_priority = 2.0
+
+[node name="MouseCollisionShape" type="CollisionShape2D" parent="MouseArea"]
+visible = false
+z_index = 5
+shape = SubResource("RectangleShape2D_ywnoi")
+
+[connection signal="input_event" from="MouseArea" to="." method="_on_mouse_area_input_event"]
+[connection signal="mouse_entered" from="MouseArea" to="." method="_on_mouse_entered"]

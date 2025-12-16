@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://blfbipc3lmmh"]
+
+[ext_resource type="Script" uid="uid://17821hghr8s1" path="res://scripts/plant.gd" id="1_hjoi0"]
+[ext_resource type="Texture2D" uid="uid://c0jouxo0kwgg3" path="res://resources/PLANT_TYPE_A.png" id="2_odjdt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_odjdt"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a88lo"]
+bg_color = Color(0.010833323, 0.65, 0, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="Plant" type="Node2D"]
+script = ExtResource("1_hjoi0")
+
+[node name="Texture" type="Sprite2D" parent="."]
+texture = ExtResource("2_odjdt")
+
+[node name="GrowthBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -56.0
+offset_right = 20.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_odjdt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a88lo")
+max_value = 3.0
+fill_mode = 3
+show_percentage = false
