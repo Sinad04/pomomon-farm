@@ -6,11 +6,11 @@ A single-player idle farming game, which can be utilized as a pomodoro timer.
 
 ## Description
 
-This repository is simply a Godot project, which is being developed solo in a very particular kind of workflow: Agile Software Development, or, SCRUM. The intention is to get familiar with the convention over the course of a few weeks within the context of a university project.
+This repository is simply a Godot project, which was developed solo in a very particular kind of workflow: Agile Software Development, or, SCRUM. The intention is to get familiar with the convention over the course of a few weeks within the context of a university project.
 
-What is and has slowly been taking form here, as described in a User Requirements document that I was given, is a graphically humble game, with motley features that all for their part posed a kind of learning opportunity regarding basic game development. Examples include save states, websocket connections and pathfinding on a 2d grid.
+Archived here (the version/commit history is on a closed gitlab community and shall stay there), as described in a User Requirements document that I was given, is a graphically humble game, with motley features that all for their part posed a kind of learning opportunity regarding basic game development. Examples include save states, websocket connections and pathfinding on a 2d grid.
 
-Perhaps development will not end (certainly slow down though) once this project does from the academic standpoint. There are certain features I would like it to have that simply aren't feasible to squeeze into the given development time frame.
+Perhaps development will not end (certainly slow down though) now that this project has from the academic standpoint. There are certain features I would like it to have that simply weren't feasible to squeeze into the given development time frame.
 
 ## Features
 
