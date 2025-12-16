@@ -81,12 +81,12 @@ Pomomon Farm is being developed in (pure) Godot; the programming language is exc
 
 To **work** on this project: 
 - clone the repository  
-- open the project in the Godot Game Engine (version 4.5.1).  
+- open the project in the Godot Game Engine (version 4.5.1)  
 
 If you want to use or add unit tests:
 - make sure the plugin "gut" (version 9.6.0) by bitwes is enabled in the project settings  
 
-If you want to **play** the game, see the `binaries/` directory in the repository, which contains executables for Windows 11 and for Linux, both 64-Bit.
+If you want to **play** the game, see the `binaries/` directory in the repository, which contains executables for Windows 11 and for Linux, both 64-Bit.  
 You may also make a binary yourself via the Godot Engine (having acquired the project as described above), suited to your Operating System, under "Project" -> "Export..." Note that exporting requires you to install export templates, which Godot will notify you of and prompt you to do.
 
 #### Configuring the Game
